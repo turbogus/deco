@@ -32,6 +32,8 @@
 --tv_haut_droit
 --tv_haut_gauche
 
+--frigo_haut
+--frigo_bas
 
 --Declaration des crafts
 
@@ -208,6 +210,25 @@ minetest.register_craft({
 	}
 })
 
+--frigo_haut
+minetest.register_craft({
+	output = "deco:frigo_haut",
+	recipe = {
+		{"default:sandstone","default:sandstone","default:sandstone"},
+		{"default:sandstone","","default:sandstone"},
+		{"default:steel_ingot","default:sandstone","default:sandstone"},
+	}
+})
+
+--frigo_bas
+minetest.register_craft({
+	output = "deco:frigo_bas",
+	recipe = {
+		{"default:sandstone","default:sandstone","default:sandstone"},
+		{"default:sandstone","","default:sandstone"},
+		{"default:sandstone","default:sandstone","default:sandstone"},
+	}
+})
 
 --PARAMETRES DES BLOCKS ET PANNEAUX
 
@@ -561,4 +582,45 @@ minetest.register_node("deco:tv_haut_gauche", {
 	legacy_facedir_simple = true,	
 	is_ground_content = false,
 	groups = {snappy=1,choppy=2,oddly_breakable_by_hand=1},
+})
+
+--frigo_haut
+minetest.register_node("deco:frigo_haut", {
+	description = "frigo partie haute",
+	tiles = {"frigo_dessus.png","frigo_dessous.png","frigo_cote.png",
+		"frigo_cote.png","frigo_cote.png","frigo_haut_devant.png"},
+	paramtype2 = "facedir",
+	legacy_facedir_simple = true,
+	is_ground_content = false,
+	group = {snappy=1,choppy=2,oddly_breakable_by_hand=1},
+})
+
+--frigo_bas
+minetest.register_node("deco:frigo_bas", {
+	description = "frigo partie basse",
+	tiles = {"frigo_dessus.png","frigo_dessous.png","frigo_cote.png",
+		"frigo_cote.png","frigo_cote.png","frigo_bas_devant.png"},
+	paramtype2 = "facedir",
+	legacy_facedir_simple = true,
+	is_ground_content = false,
+	group = {snappy=1,choppy=2,oddly_breakable_by_hand=1},
+})
+
+--regroupement des frigos haut et bas
+
+minetest.register_alias("frigo_haut", "deco:frigo_haut")
+minetest.register_alias("frigo_bas", "deco:frigo_bas")
+
+minetest.register_abm({
+	nodenames = {"frigo_bas"},
+	interval = 1,
+	chance = 1,
+	action = function(pos, node, active_object_count, active_object_count_wider)
+		local pos2={x=pos.x, y=pos.y-1, z=pos.z}
+		if minetest.env:get_node(pos2).name=="frigo_bas" then
+			minetest.env:place_node(pos, {name="frigo_haut"})
+		
+		end
+	end,
+
 })
