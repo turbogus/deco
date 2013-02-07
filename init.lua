@@ -93,3 +93,19 @@ default.register_craft({
 	}
 })
 
+--block : pierre_bleu
+--block : pierre_orange
+--block : rubik
+--panneau : store
+--block : tv_arriere
+--block : tv_bas
+--block : tv_bas_droite
+--block : tv_bas_gauche
+--block : tv_cote
+--block : tv_dessous
+--block : tv_dessus
+--block : tv_droit
+--block : tv_gauche
+--block : tv_haut
+--block : tv_haut_droit
+--block : tv_haut_gauche
