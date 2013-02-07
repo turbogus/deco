@@ -2,7 +2,7 @@
 
 --Cree par turbogus
 
---Graphism and code under gpl2 or later
+--Graphismes et code sous gpl2 ou superieur
 
 --plan :
 --Liste des blocs
@@ -18,16 +18,17 @@
 --mine
 --mort
 --pierre_bleu
+--pierre_grise
 --pierre_orange
 --rubik
 --store
 
 --tv_bas
---tv_bas_droite
+--tv_bas_droit
 --tv_bas_gauche
 --tv_haut
 --tv_gauche
---tuv_droite
+--tv_droit
 --tv_haut_droit
 --tv_haut_gauche
 
@@ -76,7 +77,7 @@ minetest.register_craft({
 minetest.register_craft({
 	output = "deco:mine",
 	recipe = {
-		{"default:axe_wood"},
+		{"default:pickaxe_wood"},
 		{"default:sign_wall"},
 	}
 })
@@ -95,6 +96,15 @@ minetest.register_craft({
 	output = "deco:pierre_bleu 4",
 	recipe = {
 		{"dye:blue"},
+		{"default:stone"},
+	}
+})
+
+--pierre grise
+minetest.register_craft({
+	output = "deco:pierre_grise 4",
+	recipe = {
+		{"dye:grey"},
 		{"default:stone"},
 	}
 })
@@ -131,16 +141,16 @@ minetest.register_craft({
 	recipe = {
 		{"","",""},
 		{"","default:glass",""},
-		{"","default:wooden_stick",""},
+		{"","default:stick",""},
 	}
 })
 --block : tv_bas_droite
 minetest.register_craft({
-	output = "deco:tv_bas_droite",
+	output = "deco:tv_bas_droit",
 	recipe = {
 		{"","",""},
 		{"","default:glass",""},
-		{"","","default:wooden_stick"},
+		{"","","default:stick"},
 	}
 })
 --block : tv_bas_gauche
@@ -149,7 +159,7 @@ minetest.register_craft({
 	recipe = {
 		{"","",""},
 		{"","default:glass",""},
-		{"default:wooden_stick","",""},
+		{"default:stick","",""},
 	}
 })
 --block : tv_droit
@@ -157,16 +167,16 @@ minetest.register_craft({
 	output = "deco:tv_droit",
 	recipe = {
 		{"","",""},
-		{"","default:glass","default:wooden_stick"},
+		{"","default:glass","default:stick"},
 		{"","",""},
 	}
 })
 --block : tv_gauche
 minetest.register_craft({
-	output = "deco:gauche",
+	output = "deco:tv_gauche",
 	recipe = {
 		{"","",""},
-		{"default:wooden_stick","default:glass",""},
+		{"default:stick","default:glass",""},
 		{"","",""},
 	}
 })
@@ -174,7 +184,7 @@ minetest.register_craft({
 minetest.register_craft({
 	output = "deco:tv_haut",
 	recipe = {
-		{"","default:wooden_stick",""},
+		{"","default:stick",""},
 		{"","default:glass",""},
 		{"","",""},
 	}
@@ -183,7 +193,7 @@ minetest.register_craft({
 minetest.register_craft({
 	output = "deco:tv_haut_droit",
 	recipe = {
-		{"","","default:wooden_stick"},
+		{"","","default:stick"},
 		{"","default:glass",""},
 		{"","",""},
 	}
@@ -192,7 +202,7 @@ minetest.register_craft({
 minetest.register_craft({
 	output = "deco:tv_haut_gauche",
 	recipe = {
-		{"default:wooden_stick","",""},
+		{"default:stick","",""},
 		{"","default:glass",""},
 		{"","",""},
 	}
@@ -205,7 +215,6 @@ minetest.register_craft({
 minetest.register_node("deco:block_zone_danger", {
 	description = "block pour indiquer les zones dangereuses",
 	tiles = {"block_zone_danger.png"},
-	inventory_image = "block_zone_danger.png",
 	is_ground_content = false,
 	groups = {snappy=1,choppy=2,oddly_breakable_by_hand=1},
 })
@@ -394,7 +403,6 @@ minetest.register_node("deco:mort", {
 minetest.register_node("deco:pierre_bleu", {
 	description = "Pierre bleu",
 	tiles = {"pierre_bleu.png"},
-	inventory_image = "pierre_bleu.png",
 	is_ground_content = false,
 	groups = {cracky=3, stone=1},
 	drop = 'deco:pierre_bleu',
@@ -402,11 +410,19 @@ minetest.register_node("deco:pierre_bleu", {
 	
 })
 
+--pierre_grise
+minetest.register_node("deco:pierre_grise", {
+	description = "Pierre grise",
+	tiles = {"pierre_grise.png"},
+	is_ground_content = false,
+	groups = {cracky=3, stone=1},
+	drop = "deco:pierre_grise",
+})
+
 --pierre_orange
 minetest.register_node("deco:pierre_orange", {
 	description = "Pierre orange",
 	tiles = {"pierre_orange.png"},
-	inventory_image = "pierre_orange.png",
 	is_ground_content = false,
 	groups = {cracky=3, stone=1},
 	drop = 'deco:pierre_orange',
@@ -418,7 +434,6 @@ minetest.register_node("deco:pierre_orange", {
 minetest.register_node("deco:rubik", {
 	description = "block decoré version rubiks cube",
 	tiles = {"rubik.png"},
-	inventory_image = "rubik.png",
 	is_ground_content = false,
 	groups = {snappy=1,choppy=2,oddly_breakable_by_hand=1},
 })
@@ -461,10 +476,89 @@ minetest.register_node("deco:store", {
 })
 
 --tv_bas
+minetest.register_node("deco:tv_bas", {
+	description = "tv partie basse",
+	tiles = {"tv_dessus.png","tv_dessous.png","tv_cote.png",
+		"tv_cote.png","tv_cote.png","tv_bas.png"},
+	paramtype2 = "facedir",
+	legacy_facedir_simple = true,	
+	is_ground_content = false,
+	groups = {snappy=1,choppy=2,oddly_breakable_by_hand=1},
+})
+
 --tv_bas_droite
+minetest.register_node("deco:tv_bas_droit", {
+	description = "tv partie basse droite",
+	tiles = {"tv_dessus.png","tv_dessous.png","tv_cote.png",
+		"tv_cote.png","tv_cote.png","tv_bas_droit.png"},
+	paramtype2 = "facedir",
+	legacy_facedir_simple = true,	
+	is_ground_content = false,
+	groups = {snappy=1,choppy=2,oddly_breakable_by_hand=1},
+})
+
 --tv_bas_gauche
+minetest.register_node("deco:tv_bas_gauche", {
+	description = "tv partie basse gauche",
+	tiles = {"tv_dessus.png","tv_dessous.png","tv_cote.png",
+		"tv_cote.png","tv_cote.png","tv_bas_gauche.png"},
+	paramtype2 = "facedir",
+	legacy_facedir_simple = true,	
+	is_ground_content = false,
+	groups = {snappy=1,choppy=2,oddly_breakable_by_hand=1},
+})
+
 --tv_haut
+minetest.register_node("deco:tv_haut", {
+	description = "tv partie haute",
+	tiles = {"tv_dessus.png","tv_dessous.png","tv_cote.png",
+		"tv_cote.png","tv_cote.png","tv_haut.png"},
+	paramtype2 = "facedir",
+	legacy_facedir_simple = true,	
+	is_ground_content = false,
+	groups = {snappy=1,choppy=2,oddly_breakable_by_hand=1},
+})
+
 --tv_gauche
---tuv_droite
+minetest.register_node("deco:tv_gauche", {
+	description = "tv partie gauche",
+	tiles = {"tv_dessus.png","tv_dessous.png","tv_cote.png",
+		"tv_cote.png","tv_cote.png","tv_gauche.png"},
+	paramtype2 = "facedir",
+	legacy_facedir_simple = true,	
+	is_ground_content = false,
+	groups = {snappy=1,choppy=2,oddly_breakable_by_hand=1},
+})
+
+--tv_droite
+minetest.register_node("deco:tv_droit", {
+	description = "tv partie droite",
+	tiles = {"tv_dessus.png","tv_dessous.png","tv_cote.png",
+		"tv_cote.png","tv_cote.png","tv_droit.png"},
+	paramtype2 = "facedir",
+	legacy_facedir_simple = true,	
+	is_ground_content = false,
+	groups = {snappy=1,choppy=2,oddly_breakable_by_hand=1},
+})
+
 --tv_haut_droit
+minetest.register_node("deco:tv_haut_droit", {
+	description = "tv partie haute droite",
+	tiles = {"tv_dessus.png","tv_dessous.png","tv_cote.png",
+		"tv_cote.png","tv_cote.png","tv_haut_droit.png"},
+	paramtype2 = "facedir",
+	legacy_facedir_simple = true,	
+	is_ground_content = false,
+	groups = {snappy=1,choppy=2,oddly_breakable_by_hand=1},
+})
+
 --tv_haut_gauche
+minetest.register_node("deco:tv_haut_gauche", {
+	description = "tv partie haute gauche",
+	tiles = {"tv_dessus.png","tv_dessous.png","tv_cote.png",
+		"tv_cote.png","tv_cote.png","tv_haut_gauche.png"},
+	paramtype2 = "facedir",
+	legacy_facedir_simple = true,	
+	is_ground_content = false,
+	groups = {snappy=1,choppy=2,oddly_breakable_by_hand=1},
+})

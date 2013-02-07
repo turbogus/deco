@@ -1,0 +1,178 @@
+comment crafter les élements :
+
+x=rien
+
+=============================
+PANNEAUX
+=============================
+
+--chute
+
+S=sand
+SW=sign_wall
+
+x x  x
+x S  x
+x SW x
+
+
+--chute_objet
+
+G=gravel
+
+x x  x
+x G  x
+x SW x
+
+
+--danger
+
+SW=sword wood
+
+x x  x
+x SW x
+x SW x
+
+
+--mine
+
+PAW = pickaxe wood
+
+x x   x
+x PAW x
+x SW  x
+
+
+--mort
+
+G=glass
+
+x x  x
+x G  x
+x SW x
+
+
+--store
+
+SW=sign wall
+C=chest
+
+x x  x
+x C  x
+x SW x
+
+===============================
+BLOCKS :
+===============================
+
+--pierre_bleu
+
+S=stone
+B= dye blue
+
+x x x
+x B x
+x S x
+
+
+
+--pierre_grise
+
+G= dye grey
+
+x x x
+x G x
+x S x 
+
+--pierre_orange
+
+O=dye orange
+
+x x x
+x O x
+x S x
+
+
+--rubik
+
+B= dye blue
+Y=dye yellow
+R=dye red
+G=dye green
+
+x x x
+B Y x
+R G x
+
+
+--block_zone_danger
+
+S=sand
+ST=sandstone
+
+x x  x
+S ST x
+ST S x
+
+
+===============================
+TELEVISION
+===============================
+
+G=glass
+S= wooden stick
+
+--tv_bas
+
+x x x
+x G x
+x S x
+
+
+--tv_bas_droit
+
+x x x
+x G x
+x x S
+
+
+--tv_bas_gauche
+
+x x x
+x G x
+S x x
+
+
+--tv_haut
+
+x S x
+x G x
+x x x
+
+
+--tv_gauche
+
+x x x
+S G x
+x x x
+
+
+--tv_droit
+
+x x x
+x G S
+x x x
+
+
+--tv_haut_droit
+
+x x S
+x G x
+x x x
+
+
+--tv_haut_gauche
+
+S x x
+x G x
+x x x
