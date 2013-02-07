@@ -585,40 +585,94 @@ minetest.register_node("deco:tv_haut_gauche", {
 })
 
 --frigo_haut
+
 minetest.register_node("deco:frigo_haut", {
-	description = "frigo partie haute",
+	description = "partie haute du frigo",
 	tiles = {"frigo_dessus.png","frigo_dessous.png","frigo_cote.png",
 		"frigo_cote.png","frigo_cote.png","frigo_haut_devant.png"},
 	paramtype2 = "facedir",
+	groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2},
 	legacy_facedir_simple = true,
-	is_ground_content = false,
-	group = {snappy=1,choppy=2,oddly_breakable_by_hand=1},
+	on_construct = function(pos)
+		local meta = minetest.env:get_meta(pos)
+		meta:set_string("formspec",
+				"size[8,9]"..
+				"list[current_name;main;0,0;8,4;]"..
+				"list[current_player;main;0,5;8,4;]")
+		meta:set_string("infotext", "Chest")
+		local inv = meta:get_inventory()
+		inv:set_size("main", 8*4)
+	end,
+	can_dig = function(pos,player)
+		local meta = minetest.env:get_meta(pos);
+		local inv = meta:get_inventory()
+		return inv:is_empty("main")
+	end,
+	on_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
+		minetest.log("action", player:get_player_name()..
+				" moves stuff in chest at "..minetest.pos_to_string(pos))
+	end,
+    on_metadata_inventory_put = function(pos, listname, index, stack, player)
+		minetest.log("action", player:get_player_name()..
+				" moves stuff to chest at "..minetest.pos_to_string(pos))
+	end,
+    on_metadata_inventory_take = function(pos, listname, index, stack, player)
+		minetest.log("action", player:get_player_name()..
+				" takes stuff from chest at "..minetest.pos_to_string(pos))
+	end,
 })
 
 --frigo_bas
 minetest.register_node("deco:frigo_bas", {
-	description = "frigo partie basse",
+	description = "partie basse du frigo",
 	tiles = {"frigo_dessus.png","frigo_dessous.png","frigo_cote.png",
 		"frigo_cote.png","frigo_cote.png","frigo_bas_devant.png"},
 	paramtype2 = "facedir",
+	groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2},
 	legacy_facedir_simple = true,
-	is_ground_content = false,
-	group = {snappy=1,choppy=2,oddly_breakable_by_hand=1},
+	on_construct = function(pos)
+		local meta = minetest.env:get_meta(pos)
+		meta:set_string("formspec",
+				"size[8,9]"..
+				"list[current_name;main;0,0;8,4;]"..
+				"list[current_player;main;0,5;8,4;]")
+		meta:set_string("infotext", "Chest")
+		local inv = meta:get_inventory()
+		inv:set_size("main", 8*4)
+	end,
+	can_dig = function(pos,player)
+		local meta = minetest.env:get_meta(pos);
+		local inv = meta:get_inventory()
+		return inv:is_empty("main")
+	end,
+	on_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
+		minetest.log("action", player:get_player_name()..
+				" moves stuff in chest at "..minetest.pos_to_string(pos))
+	end,
+    on_metadata_inventory_put = function(pos, listname, index, stack, player)
+		minetest.log("action", player:get_player_name()..
+				" moves stuff to chest at "..minetest.pos_to_string(pos))
+	end,
+    on_metadata_inventory_take = function(pos, listname, index, stack, player)
+		minetest.log("action", player:get_player_name()..
+				" takes stuff from chest at "..minetest.pos_to_string(pos))
+	end,
 })
-
 --regroupement des frigos haut et bas
 
 minetest.register_alias("frigo_haut", "deco:frigo_haut")
 minetest.register_alias("frigo_bas", "deco:frigo_bas")
 
 minetest.register_abm({
-	nodenames = {"frigo_bas"},
+	nodenames = {"deco:frigo_bas"},
 	interval = 1,
 	chance = 1,
 	action = function(pos, node, active_object_count, active_object_count_wider)
-		local pos2={x=pos.x, y=pos.y-1, z=pos.z}
-		if minetest.env:get_node(pos2).name=="frigo_bas" then
-			minetest.env:place_node(pos, {name="frigo_haut"})
+		local pos={x=pos.x, y=pos.y, z=pos.z}
+		local pos2={x=pos.x, y=pos.y+1, z=pos.z}
+		if minetest.env:get_node(pos).name=="deco:frigo_bas" then
+			minetest.env:place_node(pos2, {name="frigo_haut"})
+			--minetest.env:place_node(pos).name=="deco:frigo_haut"
 		
 		end
 	end,
