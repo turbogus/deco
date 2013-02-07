@@ -7,7 +7,7 @@
 --plan :
 --Liste des blocs
 --Déclaration des crafts
---Déclaration des blocs
+--Paramatres des blocs et panneaux
 
 --Liste des blocs:
 
@@ -21,16 +21,13 @@
 --pierre_orange
 --rubik
 --store
---tv_arriere
+
 --tv_bas
 --tv_bas_droite
 --tv_bas_gauche
---tv_cote
---tv_dessous
---tv_dessus
---tv_droit
---tv_gauche
 --tv_haut
+--tv_gauche
+--tuv_droite
 --tv_haut_droit
 --tv_haut_gauche
 
@@ -85,7 +82,7 @@ minetest.register_craft({
 })
 
 --panneau : mort
-default.register_craft({
+minetest.register_craft({
 	output = "deco:mort",
 	recipe = {
 		{"default:glass"},
@@ -94,18 +91,380 @@ default.register_craft({
 })
 
 --block : pierre_bleu
+minetest.register_craft({
+	output = "deco:pierre_bleu 4",
+	recipe = {
+		{"dye:blue"},
+		{"default:stone"},
+	}
+})
+
 --block : pierre_orange
+minetest.register_craft({
+	output = "deco:pierre_orange 4",
+	recipe = {
+		{"dye:orange"},
+		{"default:stone"},
+	}
+})
+
 --block : rubik
+minetest.register_craft({
+	output = "deco:rubik",
+	recipe = {
+		{"dye:blue","dye:yellow"},
+		{"dye:red","dye:green"},
+	}
+})
 --panneau : store
---block : tv_arriere
+minetest.register_craft({
+	output = "deco:store",
+	recipe = {
+		{"default:chest"},
+		{"default:sign_wall"},
+	}
+})
+
 --block : tv_bas
+minetest.register_craft({
+	output = "deco:tv_bas",
+	recipe = {
+		{"","",""},
+		{"","default:glass",""},
+		{"","default:wooden_stick",""},
+	}
+})
 --block : tv_bas_droite
+minetest.register_craft({
+	output = "deco:tv_bas_droite",
+	recipe = {
+		{"","",""},
+		{"","default:glass",""},
+		{"","","default:wooden_stick"},
+	}
+})
 --block : tv_bas_gauche
---block : tv_cote
---block : tv_dessous
---block : tv_dessus
+minetest.register_craft({
+	output = "deco:tv_bas_gauche",
+	recipe = {
+		{"","",""},
+		{"","default:glass",""},
+		{"default:wooden_stick","",""},
+	}
+})
 --block : tv_droit
+minetest.register_craft({
+	output = "deco:tv_droit",
+	recipe = {
+		{"","",""},
+		{"","default:glass","default:wooden_stick"},
+		{"","",""},
+	}
+})
 --block : tv_gauche
+minetest.register_craft({
+	output = "deco:gauche",
+	recipe = {
+		{"","",""},
+		{"default:wooden_stick","default:glass",""},
+		{"","",""},
+	}
+})
 --block : tv_haut
+minetest.register_craft({
+	output = "deco:tv_haut",
+	recipe = {
+		{"","default:wooden_stick",""},
+		{"","default:glass",""},
+		{"","",""},
+	}
+})
 --block : tv_haut_droit
+minetest.register_craft({
+	output = "deco:tv_haut_droit",
+	recipe = {
+		{"","","default:wooden_stick"},
+		{"","default:glass",""},
+		{"","",""},
+	}
+})
 --block : tv_haut_gauche
+minetest.register_craft({
+	output = "deco:tv_haut_gauche",
+	recipe = {
+		{"default:wooden_stick","",""},
+		{"","default:glass",""},
+		{"","",""},
+	}
+})
+
+
+--PARAMETRES DES BLOCKS ET PANNEAUX
+
+--block_zone_danger
+minetest.register_node("deco:block_zone_danger", {
+	description = "block pour indiquer les zones dangereuses",
+	tiles = {"block_zone_danger.png"},
+	inventory_image = "block_zone_danger.png",
+	is_ground_content = false,
+	groups = {snappy=1,choppy=2,oddly_breakable_by_hand=1},
+})
+
+--chute
+minetest.register_node("deco:chute", {
+	description = "Panneau attention risque de chute",
+	drawtype = "signlike",
+	tiles = {"chute.png"},
+	inventory_image = "chute.png",
+	wield_image = "chute.png",
+	paramtype = "light",
+	paramtype2 = "wallmounted",
+	sunlight_propagates = true,
+	walkable = false,
+	selection_box = {
+		type = "wallmounted",
+		--wall_top = <default>
+		--wall_bottom = <default>
+		--wall_side = <default>
+	},
+	groups = {choppy=2,dig_immediate=2,attached_node=1},
+	legacy_wallmounted = true,
+	on_construct = function(pos)
+		--local n = minetest.env:get_node(pos)
+		local meta = minetest.env:get_meta(pos)
+		meta:set_string("formspec", "field[text;;${text}]")
+		meta:set_string("infotext", "\"\"")
+	end,
+	on_receive_fields = function(pos, formname, fields, sender)
+		--print("Sign at "..minetest.pos_to_string(pos).." got "..dump(fields))
+		local meta = minetest.env:get_meta(pos)
+		fields.text = fields.text or ""
+		print((sender:get_player_name() or "").." wrote \""..fields.text..
+				"\" to sign at "..minetest.pos_to_string(pos))
+		meta:set_string("text", fields.text)
+		meta:set_string("infotext", '"'..fields.text..'"')
+	end,
+})
+
+--chute_objet
+minetest.register_node("deco:chute_objet", {
+	description = "Panneau attention risque de chute objets ou materiaux",
+	drawtype = "signlike",
+	tiles = {"chute_objet.png"},
+	inventory_image = "chute_objet.png",
+	wield_image = "chute_objet.png",
+	paramtype = "light",
+	paramtype2 = "wallmounted",
+	sunlight_propagates = true,
+	walkable = false,
+	selection_box = {
+		type = "wallmounted",
+		--wall_top = <default>
+		--wall_bottom = <default>
+		--wall_side = <default>
+	},
+	groups = {choppy=2,dig_immediate=2,attached_node=1},
+	legacy_wallmounted = true,
+	on_construct = function(pos)
+		--local n = minetest.env:get_node(pos)
+		local meta = minetest.env:get_meta(pos)
+		meta:set_string("formspec", "field[text;;${text}]")
+		meta:set_string("infotext", "\"\"")
+	end,
+	on_receive_fields = function(pos, formname, fields, sender)
+		--print("Sign at "..minetest.pos_to_string(pos).." got "..dump(fields))
+		local meta = minetest.env:get_meta(pos)
+		fields.text = fields.text or ""
+		print((sender:get_player_name() or "").." wrote \""..fields.text..
+				"\" to sign at "..minetest.pos_to_string(pos))
+		meta:set_string("text", fields.text)
+		meta:set_string("infotext", '"'..fields.text..'"')
+	end,
+})
+
+--danger
+minetest.register_node("deco:danger", {
+	description = "Panneau pour signaler un danger quelquonque",
+	drawtype = "signlike",
+	tiles = {"danger.png"},
+	inventory_image = "danger.png",
+	wield_image = "danger.png",
+	paramtype = "light",
+	paramtype2 = "wallmounted",
+	sunlight_propagates = true,
+	walkable = false,
+	selection_box = {
+		type = "wallmounted",
+		--wall_top = <default>
+		--wall_bottom = <default>
+		--wall_side = <default>
+	},
+	groups = {choppy=2,dig_immediate=2,attached_node=1},
+	legacy_wallmounted = true,
+	on_construct = function(pos)
+		--local n = minetest.env:get_node(pos)
+		local meta = minetest.env:get_meta(pos)
+		meta:set_string("formspec", "field[text;;${text}]")
+		meta:set_string("infotext", "\"\"")
+	end,
+	on_receive_fields = function(pos, formname, fields, sender)
+		--print("Sign at "..minetest.pos_to_string(pos).." got "..dump(fields))
+		local meta = minetest.env:get_meta(pos)
+		fields.text = fields.text or ""
+		print((sender:get_player_name() or "").." wrote \""..fields.text..
+				"\" to sign at "..minetest.pos_to_string(pos))
+		meta:set_string("text", fields.text)
+		meta:set_string("infotext", '"'..fields.text..'"')
+	end,
+})
+
+--mine
+minetest.register_node("deco:mine", {
+	description = "Panneau pour signaler l'entrée d'une mine",
+	drawtype = "signlike",
+	tiles = {"mine.png"},
+	inventory_image = "mine.png",
+	wield_image = "mine.png",
+	paramtype = "light",
+	paramtype2 = "wallmounted",
+	sunlight_propagates = true,
+	walkable = false,
+	selection_box = {
+		type = "wallmounted",
+		--wall_top = <default>
+		--wall_bottom = <default>
+		--wall_side = <default>
+	},
+	groups = {choppy=2,dig_immediate=2,attached_node=1},
+	legacy_wallmounted = true,
+	on_construct = function(pos)
+		--local n = minetest.env:get_node(pos)
+		local meta = minetest.env:get_meta(pos)
+		meta:set_string("formspec", "field[text;;${text}]")
+		meta:set_string("infotext", "\"\"")
+	end,
+	on_receive_fields = function(pos, formname, fields, sender)
+		--print("Sign at "..minetest.pos_to_string(pos).." got "..dump(fields))
+		local meta = minetest.env:get_meta(pos)
+		fields.text = fields.text or ""
+		print((sender:get_player_name() or "").." wrote \""..fields.text..
+				"\" to sign at "..minetest.pos_to_string(pos))
+		meta:set_string("text", fields.text)
+		meta:set_string("infotext", '"'..fields.text..'"')
+	end,
+})
+
+--mort
+minetest.register_node("deco:mort", {
+	description = "Panneau pour signaler un danger de mort",
+	drawtype = "signlike",
+	tiles = {"mort.png"},
+	inventory_image = "mort.png",
+	wield_image = "mort.png",
+	paramtype = "light",
+	paramtype2 = "wallmounted",
+	sunlight_propagates = true,
+	walkable = false,
+	selection_box = {
+		type = "wallmounted",
+		--wall_top = <default>
+		--wall_bottom = <default>
+		--wall_side = <default>
+	},
+	groups = {choppy=2,dig_immediate=2,attached_node=1},
+	legacy_wallmounted = true,
+	on_construct = function(pos)
+		--local n = minetest.env:get_node(pos)
+		local meta = minetest.env:get_meta(pos)
+		meta:set_string("formspec", "field[text;;${text}]")
+		meta:set_string("infotext", "\"\"")
+	end,
+	on_receive_fields = function(pos, formname, fields, sender)
+		--print("Sign at "..minetest.pos_to_string(pos).." got "..dump(fields))
+		local meta = minetest.env:get_meta(pos)
+		fields.text = fields.text or ""
+		print((sender:get_player_name() or "").." wrote \""..fields.text..
+				"\" to sign at "..minetest.pos_to_string(pos))
+		meta:set_string("text", fields.text)
+		meta:set_string("infotext", '"'..fields.text..'"')
+	end,
+})
+
+--pierre_bleu
+minetest.register_node("deco:pierre_bleu", {
+	description = "Pierre bleu",
+	tiles = {"pierre_bleu.png"},
+	inventory_image = "pierre_bleu.png",
+	is_ground_content = false,
+	groups = {cracky=3, stone=1},
+	drop = 'deco:pierre_bleu',
+	legacy_mineral = true,
+	
+})
+
+--pierre_orange
+minetest.register_node("deco:pierre_orange", {
+	description = "Pierre orange",
+	tiles = {"pierre_orange.png"},
+	inventory_image = "pierre_orange.png",
+	is_ground_content = false,
+	groups = {cracky=3, stone=1},
+	drop = 'deco:pierre_orange',
+	legacy_mineral = true,
+	
+})
+
+--rubik
+minetest.register_node("deco:rubik", {
+	description = "block decoré version rubiks cube",
+	tiles = {"rubik.png"},
+	inventory_image = "rubik.png",
+	is_ground_content = false,
+	groups = {snappy=1,choppy=2,oddly_breakable_by_hand=1},
+})
+
+
+--store
+minetest.register_node("deco:store", {
+	description = "Panneau pour signaler un magasin",
+	drawtype = "signlike",
+	tiles = {"store.png"},
+	inventory_image = "store.png",
+	wield_image = "store.png",
+	paramtype = "light",
+	paramtype2 = "wallmounted",
+	sunlight_propagates = true,
+	walkable = false,
+	selection_box = {
+		type = "wallmounted",
+		--wall_top = <default>
+		--wall_bottom = <default>
+		--wall_side = <default>
+	},
+	groups = {choppy=2,dig_immediate=2,attached_node=1},
+	legacy_wallmounted = true,
+	on_construct = function(pos)
+		--local n = minetest.env:get_node(pos)
+		local meta = minetest.env:get_meta(pos)
+		meta:set_string("formspec", "field[text;;${text}]")
+		meta:set_string("infotext", "\"\"")
+	end,
+	on_receive_fields = function(pos, formname, fields, sender)
+		--print("Sign at "..minetest.pos_to_string(pos).." got "..dump(fields))
+		local meta = minetest.env:get_meta(pos)
+		fields.text = fields.text or ""
+		print((sender:get_player_name() or "").." wrote \""..fields.text..
+				"\" to sign at "..minetest.pos_to_string(pos))
+		meta:set_string("text", fields.text)
+		meta:set_string("infotext", '"'..fields.text..'"')
+	end,
+})
+
+--tv_bas
+--tv_bas_droite
+--tv_bas_gauche
+--tv_haut
+--tv_gauche
+--tuv_droite
+--tv_haut_droit
+--tv_haut_gauche
