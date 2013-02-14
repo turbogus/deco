@@ -36,14 +36,6 @@
 --frigo_haut
 --frigo_bas
 
---deco:cuisine_bleu_haut_meuble_simple
---deco:cuisine_bleu_haut_meuble_double
---deco:cuisine_bleu_haut_meuble_hotte
---deco:cuisine_bleu_bas_meuble_simple
---deco:cuisine_bleu_bas_meuble_double
---deco:cuisine_bleu_bas_meuble_four
---deco:cuisine_bleu_bas_meuble_evier
---deco:cuisine_plan_travail
 
 -- ++++++++++++++++++++++++
 -- |Declaration des crafts|
