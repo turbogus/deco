@@ -1,0 +1,74 @@
+C = chest
+B = blue dyes
+G = glass
+T = torch
+W = wood
+F = furnace
+BW = bucket_water
+SS = sandstone
+SI = steel_ingot
+
+X = rien
+
+
+meuble haut simple :
+
+X C X
+X B X
+X X X
+
+meuble haut double :
+
+C C X
+X B X
+X X X
+
+meuble avec hotte :
+
+X C X
+X B X
+X G X
+
+meuble bas simple :
+
+X X X
+X B X
+X C X
+
+meuble bas double :
+
+X X X
+X B X
+C C X
+
+four :
+
+X T X
+X G X
+X F X
+
+evier
+
+X BW X
+X B  X
+X C  X
+
+plan de travail:
+
+W W W
+W X W
+W X W
+
+frigo partie haute :
+
+SS SS SS
+SS X  SS
+SI SS SS
+
+
+frigo partie basse :
+
+
+SS SS SS
+SS X  SS
+SS SS SS

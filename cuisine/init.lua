@@ -1,14 +1,27 @@
+--CUISINE
+
+-- mod créé par turbogus
+--graphisme et code licence gpl v2 ou superieur
+
+--Mod pour creer des blocs en forme d'element de cuisine utilisable comme chest.
+
+--INDEX
+--DECLARATION DES BLOCS
+--PARAMETRES DES BLOCS
+
+
+--INDEX :
+
 --cuisine:frigo_haut
 --cuisine:frigo_bas
-
---cuisine:bleu_haut_meuble_simple
---cuisine:bleu_haut_meuble_double
---cuisine:bleu_haut_meuble_hotte
---cuisine:bleu_bas_meuble_simple
---cuisine:bleu_bas_meuble_double
---cuisine:bleu_bas_meuble_four
+--cuisine:bleu_haut_1
+--cuisine:bleu_haut_2
+--cuisine:hotte
+--cuisine:bleu_bas_1
+--cuisine:bleu_bas_2
+--cuisine:four
 --cuisine:plan_travail
---cuisine:bleu_bas_meuble_evier
+--cuisine:evier
 
 
 
