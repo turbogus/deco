@@ -2,7 +2,8 @@
 
 --Cree par turbogus
 
---Graphismes et code sous gpl2 ou superieur
+-- code licence gpl v2 ou superieur
+-- graphisme sous licence CC-BY-NC-SA
 
 --plan :
 --Liste des blocs
