@@ -2,7 +2,8 @@
 
 --mod créé par turbogus
 
---graphisme et code sous licence gpl v2 ou superieur
+-- code licence gpl v2 ou superieur
+-- graphisme sous licence CC-BY-NC-SA
 
 --mod qui vous permet de crafter un poele a bois pour décorer votre maison dans minetest
 
