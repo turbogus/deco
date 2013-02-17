@@ -144,9 +144,13 @@ minetest.register_node("cuisine:frigo_haut", {
 		inv:set_size("main", 8*4)
 	end,
 	can_dig = function(pos,player)
-		local meta = minetest.env:get_meta(pos);
-		local inv = meta:get_inventory()
-		return inv:is_empty("main")
+		local inv1=true
+		local inv2=true
+		inv1=minetest.env:get_meta(pos):get_inventory():is_empty("main")
+		if minetest.env:get_node_or_nil({x=pos.x,y=pos.y-1,z=pos.z}).name=="cuisine:frigo_bas" then
+			inv2=minetest.env:get_meta({x=pos.x,y=pos.y-1,z=pos.z}):get_inventory():is_empty("main")
+		end
+		return (inv1 and inv2)
 	end,
 	on_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
 		minetest.log("action", player:get_player_name()..
@@ -189,9 +193,14 @@ minetest.register_node("cuisine:frigo_bas", {
 		end
 	end,
 	can_dig = function(pos,player)
-		local meta = minetest.env:get_meta(pos);
-		local inv = meta:get_inventory()
-		return inv:is_empty("main")
+		local inv1=true
+		local inv2=true
+		inv1=minetest.env:get_meta(pos):get_inventory():is_empty("main")
+		if minetest.env:get_node_or_nil({x=pos.x,y=pos.y+1,z=pos.z}).name=="cuisine:frigo_haut" then
+			inv2=minetest.env:get_meta({x=pos.x,y=pos.y+1,z=pos.z}):get_inventory():is_empty("main")
+		end
+		return (inv1 and inv2)
+
 	end,
 	on_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
 		minetest.log("action", player:get_player_name()..
@@ -212,9 +221,8 @@ minetest.register_node("cuisine:frigo_bas", {
 	end,
 })
 
---regroupement des frigos haut et bas
-minetest.register_alias("frigo_haut", "cuisine:frigo_haut")
-minetest.register_alias("frigo_bas", "cuisine:frigo_bas")
+--Alis pour le frigo 
+minetest.register_alias("frigo", "cuisine:frigo_bas")
 
 --cuisine:cuisine_bleu_haut_1
 minetest.register_node("cuisine:bleu_haut_1", {
