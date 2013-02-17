@@ -47,7 +47,21 @@ minetest.register_craft ({
 	}
 })
 
+--poele:fumee
+
+--fumée non craftable
+
 --poele:allume_feu
+minenetest.register_craft({
+	output = "poele:allume_feu 24",
+	recipe = {
+		{"","",""},
+		{"","default:coal_lump",""},
+		{"","default:paper",""},
+	}
+})
+--poele:buche
+--poele:cendre
 
 
 
@@ -250,5 +264,23 @@ minetest.register_node("poele:tube", {
 	groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2},
 	
 })
+
+--poele:fumee
+
+
+--poele:allume_feu
+minetest.register_craftitem("poele:allume_feu", {
+	description = "petit bloc pour aller le poele",
+	inventory_image = "allume_feu.png",
+})
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "poele:allume_feu",
+	burntime = 60, 
+})
+
+--poele:buche
+--poele:cendre
 
 --FIN
