@@ -52,7 +52,7 @@ minetest.register_craft ({
 --fumée non craftable
 
 --poele:allume_feu
-minenetest.register_craft({
+minetest.register_craft({
 	output = "poele:allume_feu 24",
 	recipe = {
 		{"","",""},
