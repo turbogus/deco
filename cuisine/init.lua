@@ -342,7 +342,7 @@ minetest.register_node("cuisine:bleu_hotte", {
 --cuisine:bleu_bas_1
 minetest.register_node("cuisine:bleu_bas_1", {
 	description = "meuble bas simple",
-	tiles = {"plan_travail.png","bleu_dessous.png","bleu_bas_cote.png",
+	tiles = {"plan_travail.png","bleu_dessus.png","bleu_bas_cote.png",
 		"bleu_bas_cote.png","bleu_bas_cote.png","bleu_bas_1.png"},
 	paramtype2 = "facedir",
 	groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2},
@@ -379,7 +379,7 @@ minetest.register_node("cuisine:bleu_bas_1", {
 --cuisine:bleu_bas_2
 minetest.register_node("cuisine:bleu_bas_2", {
 	description = "meuble bas double",
-	tiles = {"plan_travail.png","bleu_dessous.png","bleu_bas_cote.png",
+	tiles = {"plan_travail.png","bleu_dessus.png","bleu_bas_cote.png",
 		"bleu_bas_cote.png","bleu_bas_cote.png","bleu_bas_2.png"},
 	paramtype2 = "facedir",
 	groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2},
@@ -608,7 +608,7 @@ minetest.register_node("cuisine:plan_travail", {
 --cuisine:evier
 minetest.register_node("cuisine:evier", {
 	description = "meuble avec evier",
-	tiles = {"evier.png","bleu_dessous.png","bleu_bas_cote.png",
+	tiles = {"evier.png","bleu_dessus.png","bleu_bas_cote.png",
 		"bleu_bas_cote.png","bleu_bas_cote.png","bleu_bas_2.png"},
 	paramtype2 = "facedir",
 	groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2},
