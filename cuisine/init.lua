@@ -50,9 +50,8 @@ minetest.register_craft({
 minetest.register_craft({
 	output = "cuisine:bleu_haut_2",
 	recipe = {
-		{"default:chest","default:chest",""},
-		{"","dye:blue",""},
-		{"","",""},
+		{"default:chest","default:chest"},
+		{"","dye:blue"},
 	}
 })
 
@@ -60,9 +59,9 @@ minetest.register_craft({
 minetest.register_craft({
 	output = "cuisine:bleu_hotte",
 	recipe = {
-		{"","default:chest",""},
-		{"","dye:blue",""},
-		{"","default:glass",""},
+		{"default:chest"},
+		{"dye:blue"},
+		{"default:glass"},
 	}
 })
 
@@ -70,9 +69,8 @@ minetest.register_craft({
 minetest.register_craft({
 	output = "cuisine:bleu_bas_1",
 	recipe = {
-		{"","",""},
-		{"","dye:blue",""},
-		{"","default:chest",""},
+		{"dye:blue"},
+		{"default:chest"},
 	}
 })
 
@@ -80,9 +78,8 @@ minetest.register_craft({
 minetest.register_craft({
 	output = "cuisine:bleu_bas_2",
 	recipe = {
-		{"","",""},
-		{"","dye:blue",""},
-		{"default:chest","default:chest",""},
+		{"","dye:blue"},
+		{"default:chest","default:chest"},
 	}
 })
 
@@ -90,9 +87,9 @@ minetest.register_craft({
 minetest.register_craft({
 	output = "cuisine:four",
 	recipe = {
-		{"","default:torch",""},
-		{"","default:glass",""},
-		{"","default:furnace",""},
+		{"default:torch"},
+		{"default:glass"},
+		{"default:furnace"},
 	}
 
 
@@ -113,9 +110,9 @@ minetest.register_craft({
 minetest.register_craft({
 	output = "cuisine:evier",
 	recipe = {
-		{"","bucket:bucket_water",""},
-		{"","dye:blue",""},
-		{"","default:chest",""},
+		{"bucket:bucket_water"},
+		{"dye:blue"},
+		{"default:chest"},
 	}
 
 
