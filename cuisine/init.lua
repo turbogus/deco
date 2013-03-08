@@ -126,11 +126,10 @@ minetest.register_craft({
 
 --cuisine:frigo_haut
 minetest.register_node("cuisine:frigo_haut", {
-	description = "partie haute du frigo",
 	tiles = {"frigo_dessus.png","frigo_dessous.png","frigo_cote.png",
 		"frigo_cote.png","frigo_cote.png","frigo_haut_devant.png"},
 	paramtype2 = "facedir",
-	groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2},
+	groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2, not_in_creative_inventory=1},
 	legacy_facedir_simple = true,
 	drop = "cuisine:frigo_bas",
 	on_construct = function(pos)
@@ -173,7 +172,7 @@ minetest.register_node("cuisine:frigo_haut", {
 
 --cuisine:frigo_bas
 minetest.register_node("cuisine:frigo_bas", {
-	description = "partie basse du frigo",
+	description = "Le frigo",
 	tiles = {"frigo_dessus.png","frigo_dessous.png","frigo_cote.png",
 		"frigo_cote.png","frigo_cote.png","frigo_bas_devant.png"},
 	paramtype2 = "facedir",
