@@ -146,72 +146,62 @@ minetest.register_craft({
 minetest.register_craft({
 	output = "deco:tv_bas",
 	recipe = {
-		{"","",""},
-		{"","default:glass",""},
-		{"","default:stick",""},
+		{"default:glass"},
+		{"default:stick"},
 	}
 })
 --block : tv_bas_droite
 minetest.register_craft({
 	output = "deco:tv_bas_droit",
 	recipe = {
-		{"","",""},
-		{"","default:glass",""},
-		{"","","default:stick"},
+		{"default:glass",""},
+		{"","default:stick"},
 	}
 })
 --block : tv_bas_gauche
 minetest.register_craft({
 	output = "deco:tv_bas_gauche",
 	recipe = {
-		{"","",""},
-		{"","default:glass",""},
-		{"default:stick","",""},
+		{"","default:glass"},
+		{"default:stick",""},
 	}
 })
 --block : tv_droit
 minetest.register_craft({
 	output = "deco:tv_droit",
 	recipe = {
-		{"","",""},
-		{"","default:glass","default:stick"},
-		{"","",""},
+		{"default:glass","default:stick"},
 	}
 })
 --block : tv_gauche
 minetest.register_craft({
 	output = "deco:tv_gauche",
 	recipe = {
-		{"","",""},
-		{"default:stick","default:glass",""},
-		{"","",""},
+		{"default:stick","default:glass"},
 	}
 })
 --block : tv_haut
 minetest.register_craft({
 	output = "deco:tv_haut",
 	recipe = {
-		{"","default:stick",""},
-		{"","default:glass",""},
-		{"","",""},
+		{"default:stick"},
+		{"default:glass"},
 	}
 })
 --block : tv_haut_droit
 minetest.register_craft({
 	output = "deco:tv_haut_droit",
 	recipe = {
-		{"","","default:stick"},
-		{"","default:glass",""},
-		{"","",""},
+		{"","default:stick"},
+		{"default:glass",""},
 	}
 })
 --block : tv_haut_gauche
 minetest.register_craft({
 	output = "deco:tv_haut_gauche",
 	recipe = {
-		{"default:stick","",""},
-		{"","default:glass",""},
-		{"","",""},
+		{"default:stick",""},
+		{"","default:glass"},
 	}
 })
 
