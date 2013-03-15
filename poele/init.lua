@@ -55,9 +55,8 @@ minetest.register_craft ({
 minetest.register_craft({
 	output = "poele:allume_feu 24",
 	recipe = {
-		{"","",""},
-		{"","default:coal_lump",""},
-		{"","default:paper",""},
+		{"default:coal_lump"},
+		{"default:paper"},
 	}
 })
 --poele:buche
