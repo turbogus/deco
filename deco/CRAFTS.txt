@@ -121,24 +121,25 @@ TELEVISION
 
 G=glass
 S= wooden stick
+CL= coal lump
 
 --tv_bas
 
-x x x
+x CL x
 x G x
 x S x
 
 
 --tv_bas_droit
 
-x x x
+CL x x
 x G x
 x x S
 
 
 --tv_bas_gauche
 
-x x x
+x x CL
 x G x
 S x x
 
@@ -147,20 +148,20 @@ S x x
 
 x S x
 x G x
-x x x
+x CL x
 
 
 --tv_gauche
 
 x x x
-S G x
+S G CL
 x x x
 
 
 --tv_droit
 
 x x x
-x G S
+CL G S
 x x x
 
 
@@ -168,11 +169,11 @@ x x x
 
 x x S
 x G x
-x x x
+CL x x
 
 
 --tv_haut_gauche
 
 S x x
 x G x
-x x x
+x x CL
