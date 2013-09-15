@@ -219,8 +219,9 @@ minetest.register_craft({
 minetest.register_craft({
 	output = "deco:tv_milieu",
 	recipe = {
-		{"default:glass","default:glass"},
-		{"default:glass","default:glass"},
+		{"default:glass","","default:glass"},
+		{"","default:coal_lump",""},
+		{"default:glass","","default:glass"},
 	}
 })
 
